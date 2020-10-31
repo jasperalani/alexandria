@@ -1,6 +1,6 @@
 ## alexandria
 #### version 1.0.1
-PHP Image Storage and Retrieval API
+PHP Image Storage and Retrieval API using [Slim](https://github.com/slimphp/Slim)
 
 ### Setup
 1. Run `composer install`
