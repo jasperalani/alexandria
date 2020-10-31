@@ -1,6 +1,6 @@
 ## alexandria
 #### version 1.0.0
-PHP Image Storage and Retrieval API
+PHP Image Storage and Retrieval API using (Slim)[https://github.com/slimphp/Slim]
 
 Todo:
 - ~~Upload~~
