@@ -20,7 +20,9 @@ class Alexandria {
 
 	public function __construct( bool $compressionAvailable, string $environment = 'production' ) {
 		Alexandria::$compressionAvailable = $compressionAvailable;
-		Alexandria::$environment = $environment;
+		Alexandria::$environment          = $environment;
+
+		$this->verifyDeploymentIntegrity();
 
 		$this->app = AppFactory::create();
 		$this->app->add( CorsMiddleware::class );
@@ -72,4 +74,26 @@ class Alexandria {
 		}
 	}
 
+	private function verifyDeploymentIntegrity() {
+		if ( ! is_dir( './Storage' ) ) {
+			if ( ! mkdir( './Storage' ) ) {
+				trigger_error( 'Alexandria: Failed to create Storage directory. Fatal.' );
+				die();
+			}
+		}
+		if ( ! is_dir( './Storage/Errors' ) ) {
+			if ( ! mkdir( './Storage/Errors' ) ) {
+				trigger_error( 'Alexandria: Failed to create Errors directory. Fatal.' );
+				die();
+			}
+		}
+		if ( ! is_dir( './Storage/Images' ) ) {
+			if ( ! mkdir( './Storage/Images' ) ) {
+				trigger_error( 'Alexandria: Failed to create Images directory. Fatal.' );
+				die();
+			}
+		}
+
+		return true;
+	}
 }

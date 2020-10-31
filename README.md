@@ -12,12 +12,12 @@ PHP Image Storage and Retrieval API using [Slim](https://github.com/slimphp/Slim
 
 ###Todo:
 - ~~Upload~~
-- ~~Retrieval~~
+- ~~Retrieval~~ 
 - ~~Compression~~
-- Verify deployment integrity
-- Rate limits
+- ~~Verify deployment integrity (Creates necessary project folders)~~
 - Versioning
 - Check if image already exists in storage
 - Tests
 - Allow for optional compression
+- Rate limit
 
