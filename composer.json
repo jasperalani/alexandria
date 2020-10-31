@@ -1,0 +1,17 @@
+{
+    "name": "jasperalani/alexandria",
+    "description": "PHP Image Storage API",
+    "type": "api",
+    "require": {
+        "slim/slim": "4.*",
+        "slim/psr7": "1.1",
+        "ext-json": "*"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jasper Alani",
+            "email": "jasperalani@gmail.com"
+        }
+    ]
+}
