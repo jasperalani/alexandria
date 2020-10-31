@@ -11,4 +11,9 @@ include_once 'CorsMiddleware.php';
 include_once 'ErrorRenderer.php';
 include_once 'Alexandria.php';
 
-new \Alexandria\Alexandria('production');
+$compressionAvailable = file_exists('pngquant.php');
+if($compressionAvailable){
+	include_once 'pngquant.php';
+}
+
+new \Alexandria\Alexandria($compressionAvailable, 'production');

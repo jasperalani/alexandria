@@ -16,8 +16,10 @@ class Alexandria {
 
 	private App $app;
 	public static string $environment;
+	public static bool $compressionAvailable;
 
-	public function __construct( $environment = 'production' ) {
+	public function __construct( bool $compressionAvailable, string $environment = 'production' ) {
+		Alexandria::$compressionAvailable = $compressionAvailable;
 		Alexandria::$environment = $environment;
 
 		$this->app = AppFactory::create();

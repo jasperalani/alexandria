@@ -55,6 +55,7 @@ class UploadError extends RequestError {
 		UploadError::$upload = [
 			'no_file'            => $this->format('no file supplied'),
 			'failed_to_save'     => $this->format('failed to save file'),
+			'failed_to_compress' => $this->format('failed to compress image'),
 			'dev_failed_to_open' => $this->format('failed to open file'),
 		];
 	}
