@@ -15,7 +15,6 @@ use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Routing\RouteContext;
 
-// todo: do i need an alias for $databaseInstance ?
 // todo: Add compression
 // todo: check required directories exist for storage of images
 
