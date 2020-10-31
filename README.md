@@ -1,5 +1,5 @@
 ## alexandria
-#### version 1.0.0
+#### version 1.0.1
 PHP Image Storage and Retrieval API
 
 ### Setup
@@ -9,7 +9,7 @@ PHP Image Storage and Retrieval API
 
 ###Todo:
 - ~~Upload~~
-- Retrieval
+- ~~Retrieval~~
 - Compression ?
 - Verify deployment integrity
 - Rate limits

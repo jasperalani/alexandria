@@ -2,18 +2,12 @@
 
 namespace Alexandria;
 
+use Alexandria\Controllers\Retrieve;
 use Alexandria\Controllers\Upload;
-use mysqli;
 use Slim\App;
-use Slim\Exception\HttpNotFoundException;
 use Slim\Factory\AppFactory;
-use Slim\Handlers\Strategies\RequestHandler;
-use Slim\Psr7\Factory\ResponseFactory;
-use Slim\Psr7\Stream;
-use Slim\Routing\RouteCollectorProxy;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
-use Slim\Routing\RouteContext;
 
 // todo: Add compression
 // todo: check required directories exist for storage of images
@@ -45,30 +39,17 @@ class Alexandria {
 		} );
 
 		// Retrieve image
-		$this->app->get( '/{id}', function ( Request $request, Response $response, $args ) {
-			$getId  = "SELECT * FROM images WHERE id = " . $args['id'];
-			$result = Alexandria::$db->query( $getId );
+		$this->app->get( '/retrieve/{id}', function ( Request $request, Response $response, $args ) {
+			$imageIdentifier = reset( $args );
+			$result          = new Retrieve( $response, null, $imageIdentifier );
 
-			$image = $result->fetch_assoc();
+			if ( $result->success ) {
+				$imageStream = $result->retrieveImageStream();
 
-			if ( ! $result ) {
-				return Alexandria::$response->response(
-					[ 'error' => 'failed to query database' ],
-					$response
-				);
+				return $response->withBody( $imageStream );
 			}
 
-
-			$file     = "images/" . $image['id'] . '.' . $image['ext'];
-			$openFile = fopen( $file, 'rb' );
-			$stream   = new Stream( $openFile );
-
-			return $response->withBody( $stream )
-			                ->withHeader( 'Access-Control-Allow-Origin', '*' )
-			                ->withHeader( 'Access-Control-Allow-Headers',
-				                'X-Requested-With, Content-Type, Accept, Origin, Authorization' )
-			                ->withHeader( 'Access-Control-Allow-Methods',
-				                'GET, POST, PUT, DELETE, PATCH, OPTIONS' );
+			return $response;
 		} );
 
 		// Preflight Options Request
